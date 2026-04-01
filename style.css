@@ -1,62 +1,45 @@
-/* Base settings */
 body, html {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow-x: hidden; 
-  background-color: black;
-  font-family: sans-serif;
-  /* This makes clicking the button scroll down smoothly */
-  scroll-behavior: smooth; 
+  overflow: hidden; /* This absolutely prevents any scrolling */
+  background-color: white; /* Base background is now white */
 }
 
-/* Pins the Game of Life to the background */
 #p5-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1; 
+  z-index: 1; 
 }
 
-/* 1. Perfect Centering for the Landing Screen */
 #landing-screen {
-  height: 100vh; /* Takes up the full height of the screen */
-  display: flex; /* Flexbox is the best way to center things */
-  justify-content: center; /* Centers horizontally */
-  align-items: center; /* Centers vertically */
+  height: 100vh;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
   position: relative;
   z-index: 10; 
+  pointer-events: none; /* Lets the mouse interact with the grid behind the text */
 }
 
-/* 2. The Retro Pixel Button Design */
 .pixel-button {
-  font-family: 'Press Start 2P', cursive; /* Applies the arcade font */
-  color: white;
-  text-decoration: none; /* Removes the default blue underline */
-  font-size: 20px;
-  padding: 20px 30px;
-  border: 4px solid white; /* Thick, blocky border */
-  background-color: black; /* Solid background so the grid lines don't cross the text */
-  transition: all 0.2s; /* Smooth animation when hovered */
-  cursor: pointer;
-}
-
-/* What happens when you hover over the button */
-.pixel-button:hover {
-  background-color: white;
+  font-family: 'Press Start 2P', cursive;
   color: black;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 20px 30px;
+  border: 4px solid black;
+  background-color: transparent; /* Makes the inside hollow like a PNG */
+  transition: all 0.2s;
+  cursor: pointer;
+  pointer-events: auto; /* Makes the button itself clickable */
 }
 
-/* 3. The "Next Interface" Gallery Section */
-.portfolio-content {
-  min-height: 100vh; /* Ensures it takes up at least a full screen */
-  position: relative;
-  z-index: 1; 
-  color: white; 
-  padding: 80px 40px;
-  /* Adds a dark, semi-transparent background behind your work so it's readable over the grid */
-  background: rgba(0, 0, 0, 0.85); 
+.pixel-button:hover {
+  background-color: black;
+  color: white;
 }
