@@ -6,12 +6,10 @@ uniform vec2 normalRes;
 
 void main() {
   vec2 uv = vTexCoord;
-  uv.y = 1.0 - uv.y; // Flips the coordinates so your mouse lines up
+  uv.y = 1.0 - uv.y; 
 
-  // Get the current state of this pixel
   float center = texture2D(tex, uv).r;
 
-  // Count the 8 neighbors around this pixel
   float neighbors = 0.0;
   neighbors += texture2D(tex, uv + vec2(-1.0, -1.0) * normalRes).r;
   neighbors += texture2D(tex, uv + vec2( 0.0, -1.0) * normalRes).r;
@@ -24,17 +22,16 @@ void main() {
 
   float nextState = 0.0;
 
-  // Game of Life Rules
   if (center > 0.5) {
     if (neighbors > 1.5 && neighbors < 3.5) {
-      nextState = 1.0; // Cell lives
+      nextState = 1.0; 
     }
   } else {
     if (neighbors > 2.5 && neighbors < 3.5) {
-      nextState = 1.0; // Cell is born
+      nextState = 1.0; 
     }
   }
 
-  // Draw the pixel to the screen
-  gl_FragColor = vec4(vec3(nextState), 1.0);
+  // THIS IS THE MAGIC LINE: It inverts the output so 0 is white and 1 is black
+  gl_FragColor = vec4(vec3(1.0 - nextState), 1.0);
 }
